@@ -21,12 +21,13 @@
       var options = {
             center: new google.maps.LatLng(47.90296, 1.90925),
             zoom: 6,
+            center: {lat: 48.8566, lng: 2.3522},
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
+      // Initialisez la carte Google Maps
         var map = new google.maps.Map(document.getElementById("cluster"), options);
         var oms = new OverlappingMarkerSpiderfier(map);
-    </script>  
-    <script>
+
       // Créez un tableau avec les coordonnées GPS de vos marqueurs
       var locations = [
         ['Nom du lieu 1', 48.8566, 2.3522],
@@ -35,11 +36,6 @@
         // Ajoutez autant de marqueurs que vous le souhaitez
       ];
 
-      // Initialisez la carte Google Maps
-      var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 4,
-        center: {lat: 48.8566, lng: 2.3522}
-      });
 
       // Initialisez MarkerClusterer
       var markerClusterer = new MarkerClusterer(map, markers, {
