@@ -16,6 +16,15 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6Ty4quCsNNB_QFdljOO9mwhKTFHgh4a4"></script>
     <script src="https://cdn.rawgit.com/googlemaps/js-marker-clusterer/gh-pages/src/markerclusterer.js"></script>
     <script>
+      var options = {
+            center: new google.maps.LatLng(47.90296, 1.90925),
+            zoom: 6,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("cluster"), options);
+        var oms = new OverlappingMarkerSpiderfier(map);
+    </script>  
+    <script>
       // Créez un tableau avec les coordonnées GPS de vos marqueurs
       var locations = [
         ['Nom du lieu 1', 48.8566, 2.3522],
@@ -31,7 +40,10 @@
       });
 
       // Initialisez MarkerClusterer
-      var markerCluster = new MarkerClusterer(map, []);
+      var markerClusterer = new MarkerClusterer(map, markers, {
+          maxZoom: 9, // maxZoom set when clustering will stop
+          imagePath: 'https://cdn.rawgit.com/googlemaps/js-marker-clusterer/gh-pages/images/m'
+      });
 
       // Ajoutez chaque marqueur à la carte et à MarkerClusterer
       for (var i = 0; i < locations.length; i++) {
