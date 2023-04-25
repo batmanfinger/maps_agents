@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ma carte Google Maps avec MarkerClusterer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      #map {
+        height: 500px;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Ma carte Google Maps avec MarkerClusterer</h1>
+    <div id="map"></div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6Ty4quCsNNB_QFdljOO9mwhKTFHgh4a4"></script>
+    <script src="https://cdn.rawgit.com/googlemaps/js-marker-clusterer/gh-pages/src/markerclusterer.js"></script>
+    <script>
+      // Créez un tableau avec les coordonnées GPS de vos marqueurs
+      var locations = [
+        ['Nom du lieu 1', 48.8566, 2.3522],
+        ['Nom du lieu 2', 45.7640, 4.8357],
+        ['Nom du lieu 3', 51.5074, -0.1278],
+        // Ajoutez autant de marqueurs que vous le souhaitez
+      ];
+
+      // Initialisez la carte Google Maps
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 4,
+        center: {lat: 48.8566, lng: 2.3522}
+      });
+
+      // Initialisez MarkerClusterer
+      var markerCluster = new MarkerClusterer(map, []);
+
+      // Ajoutez chaque marqueur à la carte et à MarkerClusterer
+      for (var i = 0; i < locations.length; i++) {
+        var marker = new google.maps.Marker({
+          position: {lat: locations[i][1], lng: locations[i][2]},
+          title: locations[i][0]
+        });
+        markerCluster.addMarker(marker);
+      }
+    </script>
+  </body>
+</html>
